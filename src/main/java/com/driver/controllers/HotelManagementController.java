@@ -1,9 +1,11 @@
 package com.driver.controllers;
 
+import com.driver.ServiceLayer;
 import com.driver.model.Booking;
 import com.driver.model.Facility;
 import com.driver.model.Hotel;
 import com.driver.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/hotel")
 public class HotelManagementController {
+
+    @Autowired
+    private ServiceLayer serviceLayer;
 
     @PostMapping("/add-hotel")
     public String addHotel(@RequestBody Hotel hotel){
@@ -68,7 +73,7 @@ public class HotelManagementController {
     @GetMapping("/get-bookings-by-a-person/{aadharCard}")
     public int getBookings(@PathVariable("aadharCard")Integer aadharCard)
     {
-        //In this function return the bookings done by a person 
+        //In this function return the bookings done by a person
         return 0;
     }
 
