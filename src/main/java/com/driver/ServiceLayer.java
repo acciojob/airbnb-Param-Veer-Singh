@@ -17,10 +17,7 @@ public class ServiceLayer {
     private RepositoryLayer repositoryLayer;
 
     public String addHotel(Hotel hotel){
-        if(hotel == null || hotel.getHotelName() == null)return "FAILURE";
-        else {
-           return repositoryLayer.addHotel(hotel);
-        }
+        return repositoryLayer.addHotel(hotel);
     }
 
     public int addUser(User user){

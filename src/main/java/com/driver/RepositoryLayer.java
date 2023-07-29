@@ -18,7 +18,8 @@ public class RepositoryLayer {
     HashMap<String, Booking> bookingHashMap = new HashMap<>();
 
     public String addHotel(Hotel hotel){
-        if(hotelHashMap.containsKey(hotel.getHotelName()))return "FAILURE";
+        if(hotel == null || hotel.getHotelName() == null)return "FAILURE";
+        else if(hotelHashMap.containsKey(hotel.getHotelName()))return "FAILURE";
         else{
             hotelHashMap.put(hotel.getHotelName(),hotel);
             return "SUCCESS";
@@ -37,6 +38,11 @@ public class RepositoryLayer {
             if(hotelHashMap.get(hotelName).getFacilities().size() > maxfacilities){
                 maxfacilities = hotelHashMap.get(hotelName).getFacilities().size();
                 maxFacilitiesHotelName = hotelName;
+            }
+            else if(hotelHashMap.get(hotelName).getFacilities().size() == maxfacilities){
+                if(hotelName.compareTo(maxFacilitiesHotelName) < 0){
+                    maxFacilitiesHotelName = hotelName;
+                }
             }
         }
         return maxFacilitiesHotelName;
@@ -57,17 +63,20 @@ public class RepositoryLayer {
         Hotel hotel = hotelHashMap.get(hotelName);
         hotel.setAvailableRooms(hotel.getAvailableRooms() - booking.getNoOfRooms());
 
-        Booking booking1 = new Booking(bookingId,bookingAadharCard,noOfRooms,bookingPersonName,hotelName);
-        bookingHashMap.put(bookingId,booking1);
+        booking.setAmountToBePaid(amountToBePaid);
+        booking.setBookingId(bookingId);
+
+        bookingHashMap.put(bookingId,booking);
 
         return  amountToBePaid;
     }
 
     public int getBookings(int aadharCard){
-        for (Booking booking: bookingHashMap.values()) {
-            if(booking.getBookingAadharCard() == aadharCard)return booking.getNoOfRooms();
+        int numberOfBookings = 0;
+        for (Booking booking : bookingHashMap.values()) {
+            if(booking.getBookingAadharCard() == aadharCard)numberOfBookings++;
         }
-        return 0;
+        return numberOfBookings;
     }
 
     public Hotel updateFacilities(List<Facility> newFacilities, String hotelName){
