@@ -83,7 +83,7 @@ public class RepositoryLayer {
         Hotel hotel = hotelHashMap.get(hotelName);
         List<Facility> oldFacilities = hotel.getFacilities();
 
-        for(Facility facility : oldFacilities){
+        for(Facility facility : newFacilities){
             if(!oldFacilities.contains(facility))oldFacilities.add(facility);
         }
 
