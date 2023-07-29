@@ -23,8 +23,9 @@ import java.util.UUID;
 @RequestMapping("/hotel")
 public class HotelManagementController {
 
-    @Autowired
-    private ServiceLayer serviceLayer;
+//    @Autowired
+//    private ServiceLayer serviceLayer;
+    ServiceLayer serviceLayer = new ServiceLayer();
 
     @PostMapping("/add-hotel")
     public String addHotel(@RequestBody Hotel hotel){

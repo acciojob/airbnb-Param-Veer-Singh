@@ -13,8 +13,9 @@ import java.util.List;
 @Service
 public class ServiceLayer {
 
-    @Autowired
-    private RepositoryLayer repositoryLayer;
+//    @Autowired
+//    private RepositoryLayer repositoryLayer;
+    RepositoryLayer repositoryLayer = new RepositoryLayer();
 
     public String addHotel(Hotel hotel){
         return repositoryLayer.addHotel(hotel);
