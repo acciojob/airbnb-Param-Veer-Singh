@@ -4,11 +4,13 @@ import com.driver.model.Booking;
 import com.driver.model.Facility;
 import com.driver.model.Hotel;
 import com.driver.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+@Repository
 public class RepositoryLayer {
 
     HashMap<String, Hotel> hotelHashMap = new HashMap<>();
